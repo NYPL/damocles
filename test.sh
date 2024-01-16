@@ -1,2 +1,3 @@
+#!/bin/bash
 
-echo $(find $NYPL_RAW_DATA_LOC)
+echo $NYPL_RAW_DATA_LOC
