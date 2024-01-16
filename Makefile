@@ -2,7 +2,7 @@
 .DELETE_ON_ERROR:
 
 
-HAS_DLOG_SO_P := $(shell test -f bin/dlog-make.so && echo yes)
+HAS_DLOG_SO_P := $(shell test -f bin/dlog-make.so && test -f bin/dlog-r.so && echo yes)
 ifeq ($(HAS_DLOG_SO_P), yes)
 load bin/dlog-make.so
 endif
@@ -27,7 +27,7 @@ CY          := $(shell date +%Y)
 
 ifneq ($(HAS_DLOG_SO_P), yes)
 
-all: begin bin/dlog-make.so end
+all: begin bin/dlog-make.so bin/dlog-r.so end
 
 else
 
@@ -67,3 +67,6 @@ bin/dlog-make.so: src/dlog.c
 	@ echo bin thing
 	$(CC) -shared -fPIC -o $@ $< -lsystemd -DFOR_GNU_MAKE
 
+bin/dlog-r.so: src/dlog.c
+	@ echo bin thing
+	R CMD SHLIB -c -o $@ $< -lsystemd
