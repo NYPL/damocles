@@ -2,6 +2,9 @@
 .DELETE_ON_ERROR:
 
 
+# TODO: objects in build directory
+
+
 HAS_DLOG_SO_P := $(shell test -f bin/dlog-make.so && test -f bin/dlog-r.so && echo yes)
 ifeq ($(HAS_DLOG_SO_P), yes)
 load bin/dlog-make.so
@@ -14,6 +17,8 @@ export NONEXTANTENVVAR=hi
 
 
 CC := gcc
+
+LOG_FILE := build.log
 
 ISO8601D	:= $(shell date -I)
 ISO8601DT	:= $(shell date -Iseconds)
@@ -31,15 +36,26 @@ all: begin bin/dlog-make.so bin/dlog-r.so end
 
 else
 
-all: begin debug end
+all: begin bin/dlog-make.so bin/dlog-r.so debug end
 
 endif
 # ----------------------------------------------------------------------- #
 
 
+bin/dlog-make.so: src/dlog.c
+	@ echo bin thing
+	$(CC) -shared -fPIC -o $@ $< -lsystemd -DFOR_GNU_MAKE -DLOG_FILE=\"$(LOG_FILE)\"
+
+
+bin/dlog-r.so: src/dlog.c
+	@ echo bin thing
+	R CMD SHLIB -c -o $@ $< -lsystemd
+
+
 
 .PHONY: debug
 debug:
+	$(dlog hi, hi)
 	@ echo $(ISO8601D)
 	@ echo $(ISO8601DT)
 	@ echo $(CY)
@@ -61,12 +77,7 @@ end:
 
 .PHONY: clean
 clean:
-	@ rm -rf build bin
+	@ echo "cleaning"
+	rm -rf build bin
 
-bin/dlog-make.so: src/dlog.c
-	@ echo bin thing
-	$(CC) -shared -fPIC -o $@ $< -lsystemd -DFOR_GNU_MAKE
 
-bin/dlog-r.so: src/dlog.c
-	@ echo bin thing
-	R CMD SHLIB -c -o $@ $< -lsystemd

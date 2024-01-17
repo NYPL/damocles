@@ -8,10 +8,15 @@
 #include <gnumake.h>
 #endif
 
+#ifndef LOG_FILE
 #define LOG_FILE "build.log"
+#endif
 
 
 int plugin_is_GPL_compatible;
+
+// TODO: split up the journal and file thing
+// TODO:   and add console writing (with color)
 
 // TODO: do some error checking
 int dlog(const char* module, const char* log_message) {
