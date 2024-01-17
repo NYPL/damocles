@@ -81,7 +81,7 @@ clean:
 	rm -rf build bin
 
 .PHONY: mrproper
-mrproper:
+mrproper: clean
 	rm -rf autom4te.cache/
-	rm -f config.log Makefile Makefile.in config.status configure configure~ compile install-sh missing
+	rm -f config.log Makefile Makefile.in config.status configure configure~ compile install-sh missing aclocal.m4
 
