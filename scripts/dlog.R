@@ -9,7 +9,3 @@ dlog <- function(module, log_message) {
   print(current_source_filename())
   .C("dlog_for_R", module=module, log_message=log_message)
 }
-
-
-
-

@@ -1,9 +1,9 @@
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 
 #include <systemd/sd-journal.h>
+
 #ifdef FOR_GNU_MAKE
 #include <gnumake.h>
 #endif
