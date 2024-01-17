@@ -73,6 +73,16 @@ config.status
 autom4te.cache
 aclocal.m4
 build-aux/
+autoscan.log
+configure.scan
+configure~
+config.h~
+missing
+compile
+install-sh
+Makefile
+Makefile.in
+stamp-h1
 
 packrat/lib*/
 packrat/src*/
