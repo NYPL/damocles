@@ -83,5 +83,5 @@ clean:
 .PHONY: mrproper
 mrproper:
 	rm -rf autom4te.cache/
-	rm -f config.log Makefile Makefile.in config.status
+	rm -f config.log Makefile Makefile.in config.status configure configure~
 
