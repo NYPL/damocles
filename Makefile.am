@@ -84,7 +84,7 @@ clean:
 .PHONY: mrproper
 mrproper: clean
 	@ rm -rf autom4te.cache/
-	@ rm -f config.log Makefile Makefile.in config.status configure configure~ compile install-sh missing aclocal.m4 stamp-h1 configure.scan config.h autoscan.log config.guess config.sub config.h.in
+	@ rm -f config.log Makefile Makefile.in config.status configure configure~ compile install-sh missing aclocal.m4 stamp-h1 configure.scan config.h autoscan.log config.guess config.sub config.h.in test.sh
 
 
 # TODO: override the autotools default targets that don't make sense

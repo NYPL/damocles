@@ -58,9 +58,13 @@ AC_C_INLINE
 AC_SUBST(CC)
 AC_SUBST(CXX)
 
+# TODO: remove... this is just a test
+AC_SUBST(Rscript)
+
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_FILES([Makefile])
 
-AC_CONFIG_SRCDIR(src/dlog.c)
+# TODO: remove... this is just a test
+AC_CONFIG_FILES([test.sh], [chmod +x test.sh])
 
 AC_OUTPUT
