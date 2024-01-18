@@ -4,6 +4,7 @@
 
 # TODO: objects in build directory
 
+# TODO: LOG_FILE should be a path?
 
 HAS_DLOG_SO_P := $(shell test -f bin/dlog-make.so && test -f bin/dlog-r.so && echo yes)
  ifeq ($(HAS_DLOG_SO_P), yes)
@@ -82,6 +83,13 @@ clean:
 
 .PHONY: mrproper
 mrproper: clean
-	rm -rf autom4te.cache/
-	rm -f config.log Makefile Makefile.in config.status configure configure~ compile install-sh missing aclocal.m4
+	@ rm -rf autom4te.cache/
+	@ rm -f config.log Makefile Makefile.in config.status configure configure~ compile install-sh missing aclocal.m4 stamp-h1 configure.scan config.h autoscan.log config.guess config.sub config.h.in
 
+
+# TODO: override the autotools default targets that don't make sense
+#         pero bonito
+
+.PHONY: install
+install:
+	@ echo nothing to install

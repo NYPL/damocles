@@ -89,6 +89,7 @@ autoscan.log
 configure.scan
 config.guess
 config.sub
+config.h
 Makefile
 
 packrat/lib*/
