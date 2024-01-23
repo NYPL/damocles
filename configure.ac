@@ -1,46 +1,19 @@
 
-
 #############################################################################
 ###   M4 MACROS                                                           ###
 
-define(AC_EZ_CHECK_PROG, [
-    AC_PATH_PROG([$1], [$1], [nope])
-    if test "$$1" = nope; then
-       AC_MSG_ERROR([$1 (required) is not installed])
-    fi
-])
-
-define(AC_CHECK_R_PACKAGE, [
-    AC_MSG_CHECKING([if $1 version >= $2])
-    $("$Rscript" --vanilla -e 'hasPkg <- "$1" %in% rownames(installed.packages()); q(save="no", status=if (hasPkg) packageVersion("$1") >= "$2" else FALSE)')
-    if test x"$?" == x"1"; then
-        AC_MSG_RESULT([yes])
-    else
-        AC_MSG_RESULT([no])
-        AC_MSG_ERROR([must have $1])
-    fi
-])
+m4_include([./m4/acinclude.m4])
 
 #############################################################################
 
-
-
-AC_INIT([damocles],[0.1],[anthonypaulfischetti@nypl.org])
+AC_INIT([damocles],[0.1],[anthonypaulfischetti@nypl.org],
+        [damocles], [https://github.com/NYPL/damocles])
 
 AC_PROG_CC
 AC_PROG_CXX
 AC_PROG_INSTALL
 AC_PROG_LN_S
 AC_PROG_RANLIB
-
-# AC_PATH_PROG([R], [R], [nope])
-# if test "$R" = nope; then
-#    AC_MSG_ERROR([No R installed in this system])
-# fi
-# AC_PATH_PROG([Rscript], [Rscript], [nope])
-# if test "$Rscript" = nope; then
-#     AC_MSG_ERROR([Couldn't find Rscript])
-# fi
 
 AC_EZ_CHECK_PROG(R)
 AC_EZ_CHECK_PROG(Rscript)
