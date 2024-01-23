@@ -135,3 +135,6 @@ _multiconfig.yml
 
 gmon.out
 callgrind.out.*
+
+test.sh
+test.R
