@@ -27,8 +27,6 @@ define(AC_CHECK_R_PACKAGE, [
 
 AC_INIT([damocles],[0.1],[anthonypaulfischetti@nypl.org])
 
-AM_INIT_AUTOMAKE([foreign])
-
 AC_PROG_CC
 AC_PROG_CXX
 AC_PROG_INSTALL
