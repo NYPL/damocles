@@ -15,16 +15,16 @@ AC_PROG_INSTALL
 AC_PROG_LN_S
 AC_PROG_RANLIB
 
-AC_EZ_CHECK_PROG(R)
-AC_EZ_CHECK_PROG(Rscript)
+TF_EZ_CHECK_PROG(R)
+TF_EZ_CHECK_PROG(Rscript)
 
-AC_CHECK_R_PACKAGE([data.table], [1.14.0])
-AC_CHECK_R_PACKAGE([libbib],      [0.6.4])
-AC_CHECK_R_PACKAGE([assertr],     [3.0.0])
-AC_CHECK_R_PACKAGE([scriptName],  [1.0.0])
-AC_CHECK_R_PACKAGE([stringr],     [1.5.0])
-AC_CHECK_R_PACKAGE([magrittr],    [2.0.0])
-AC_CHECK_R_PACKAGE([pbapply],     [1.7.0])
+TF_CHECK_R_PACKAGE([data.table], [1.14.0])
+TF_CHECK_R_PACKAGE([libbib],      [0.6.4])
+TF_CHECK_R_PACKAGE([assertr],     [3.0.0])
+TF_CHECK_R_PACKAGE([scriptName],  [1.0.0])
+TF_CHECK_R_PACKAGE([stringr],     [1.5.0])
+TF_CHECK_R_PACKAGE([magrittr],    [2.0.0])
+TF_CHECK_R_PACKAGE([pbapply],     [1.7.0])
 
 AC_FUNC_MALLOC
 AC_TYPE_SIZE_T
