@@ -1,3 +1,4 @@
+DM_BEGIN_IMPORT_SECTION
 DM_SECTION(EZproxy)
 
 DM_BEGIN_COLLAPSIBLE
@@ -132,3 +133,4 @@ The data product contains the following fields
   Just the date of the access (no time component) (in ISO 8601, or course)
 
 DM_END_COLLAPSIBLE
+DM_END_IMPORT_SECTION

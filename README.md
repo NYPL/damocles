@@ -5,14 +5,10 @@ library's data-crunching pipeline_
 
 
 *****
-  - [Sierra Shadow](#sierra-shadow)
   - [EZproxy](#ezproxy)
+  - [Sierra Shadow](#sierra-shadow)
 
 *****
-
-## Sierra Shadow
-_under construction_
-
 
 ## EZproxy
 
@@ -148,5 +144,10 @@ The data product contains the following fields
 
 
 </details>
+
+
+## Sierra Shadow
+_under construction_
+
 
 

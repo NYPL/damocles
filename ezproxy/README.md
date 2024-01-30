@@ -1,9 +1,6 @@
 
 ## EZproxy
 
-<details>
-  <summary>Click here to expand</summary><br/>
-
 
 This is the code which cleans/processes/compiles the raw EZproxy
 web logs and produces a single data set (concatenates all logs)
@@ -132,5 +129,3 @@ The data product contains the following fields
   Just the date of the access (no time component) (in ISO 8601, or course)
 
 
-</details>
-  - [EZproxy](#ezproxy)

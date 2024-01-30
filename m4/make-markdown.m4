@@ -23,7 +23,6 @@ m4_define(`DM_SUBTITLE', `m4_divert(4)`'_`'$1`'_'`'m4_divert(7)`')`'m4_divert(-1
 m4_define(`DM_SECTION',  `m4_divert(5)  - [$1](`#'`'m4_translit(`$1', `A-Z ', `a-z-'))
 `'m4_divert(2)
 `##' $1`'')
-m4_define(`DM__SECTION', `DM_SECTION($1)')
 # --------------------------------------------------------------- #
 
 # --------------------------------------------------------------- #
@@ -76,13 +75,19 @@ m4_define(`DM_INCLUDE', `m4_include($1)m4_dnl')
 
 
 # --------------------------------------------------------------- #
+### these are overwritten for generation of subordinate READMEs
 m4_define(`DM_BEGIN_COLLAPSIBLE', `<details>
   <summary>Click here to expand</summary><br/>
 ')
 m4_define(`DM_END_COLLAPSIBLE', `
 </details>')
+m4_define(`DM_BEGIN_IMPORT_SECTION', `m4_dnl')
+m4_define(`DM_END_IMPORT_SECTION', `m4_dnl')
 # --------------------------------------------------------------- #
 
+# --------------------------------------------------------------- #
+m4_define(`DM_CLEARDIVERT', `m4_pushdef(`_n', m4_divnum)m4_divert(`-1')m4_undivert($@)m4_divert(_n)m4_popdef(`_n')')
+# --------------------------------------------------------------- #
 
 
 # --------------------------------------------------------------- #

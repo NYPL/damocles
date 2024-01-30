@@ -43,25 +43,37 @@ all: begin docs debug end
 # ----------------------------------------------------------------------- #
 
 
+# ----------------------------------------------------------------------- #
+### shared library pre-prerequisites
+
+# TODO: group into PHONY target?!
+
 bin/dlog-make.so: src/dlog.c
 	@ echo bin thing
 	$(CC) -shared -fPIC -o $@ $< -lsystemd -DFOR_GNU_MAKE -DLOG_FILE=\"$(LOG_FILE)\"
 
-
 bin/dlog-r.so: src/dlog.c
 	@ echo bin thing
 	R CMD SHLIB -c -o $@ $< -lsystemd
+# ----------------------------------------------------------------------- #
 
 
+# ----------------------------------------------------------------------- #
 .PHONY: docs
-docs: README.md README.pdf
-README.md: m4/make-readme.m4 README.in
+README.md: m4/make-markdown.m4 DOCUMENTATION.in
 	m4 -P $^ > $@
 
 # TODO: remove this after test
 README.pdf: README.md
 	pandoc -s -o $@ $<
 
+ezproxy/README.md: m4/make-markdown.m4 ezproxy/README.in
+	m4 -P m4/make-markdown.m4 -DDM_BEGIN_COLLAPSIBLE="m4_dnl" -D DM_END_COLLAPSIBLE="m4_dnl" -DDM_END_IMPORT_SECTION="DM_CLEARDIVERT(5)" ezproxy/README.in > $@
+
+docs: README.md README.pdf ezproxy/README.md
+
+# TODO: —_—
+# ----------------------------------------------------------------------- #
 
 
 
@@ -96,7 +108,12 @@ clean:
 .PHONY: mrproper
 mrproper: clean
 	@ rm -rf autom4te.cache/
-	@ rm -f config.log Makefile config.status configure configure~ compile install-sh missing aclocal.m4 stamp-h1 configure.scan config.h autoscan.log config.guess config.sub config.h.in test.sh README.md README.pdf
+	@ rm -f config.log Makefile config.status configure configure~ compile install-sh missing aclocal.m4 stamp-h1 configure.scan config.h autoscan.log config.guess config.sub config.h.in test.sh README.md README.pdf ezproxy/README.md
+# TODO: first off, this is horrible
+#       subordinate READMEs need to be in a variable
+#       and a lot of other stuff
+#       Speaking of "way", by the way, should those be in `make clean` or `make mrproper`
+
 
 
 # TODO: override the autotools default targets that don't make sense

@@ -10,9 +10,10 @@ DM_TITLE(Damocles)
 DM_SUBTITLE(Damocles unifies the previously separated components of the research
 library's data-crunching pipeline)
 
+DM_INCLUDE(ezproxy/README.in)
+
 DM_SECTION(Sierra Shadow)
 DM_ITALIC(under construction)
 
-DM_INCLUDE(ezproxy/README.in)
 
 DM_END
