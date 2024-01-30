@@ -136,3 +136,5 @@ gmon.out
 callgrind.out.*
 
 test.sh
+
+README.pdf

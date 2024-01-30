@@ -37,7 +37,7 @@ all: begin bin/dlog-make.so bin/dlog-r.so end
 
  else
 
-all: begin bin/dlog-make.so bin/dlog-r.so debug end
+all: begin docs debug end
 
  endif
 # ----------------------------------------------------------------------- #
@@ -51,6 +51,18 @@ bin/dlog-make.so: src/dlog.c
 bin/dlog-r.so: src/dlog.c
 	@ echo bin thing
 	R CMD SHLIB -c -o $@ $< -lsystemd
+
+
+.PHONY: docs
+docs: README.md README.pdf
+README.md: m4/make-readme.m4 README.in
+	m4 -P $^ > $@
+
+# TODO: remove this after test
+README.pdf: README.md
+	pandoc -s -o $@ $<
+
+
 
 
 
@@ -84,7 +96,7 @@ clean:
 .PHONY: mrproper
 mrproper: clean
 	@ rm -rf autom4te.cache/
-	@ rm -f config.log Makefile config.status configure configure~ compile install-sh missing aclocal.m4 stamp-h1 configure.scan config.h autoscan.log config.guess config.sub config.h.in test.sh
+	@ rm -f config.log Makefile config.status configure configure~ compile install-sh missing aclocal.m4 stamp-h1 configure.scan config.h autoscan.log config.guess config.sub config.h.in test.sh README.md README.pdf
 
 
 # TODO: override the autotools default targets that don't make sense
@@ -93,3 +105,6 @@ mrproper: clean
 .PHONY: install
 install:
 	@ echo nothing to install
+
+
+
