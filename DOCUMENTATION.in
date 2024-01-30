@@ -1,3 +1,6 @@
+
+# TODO: fill out
+
 DM_BEGIN
 
 DM_SMALL1(This repository is still under construction)
@@ -8,9 +11,8 @@ DM_SUBTITLE(Damocles unifies the previously separated components of the research
 library's data-crunching pipeline)
 
 DM_SECTION(Sierra Shadow)
-__under construction__
+DM_ITALIC(under construction)
 
-DM_SECTION(EZproxy)
-__under construction__
+DM_INCLUDE(ezproxy/README.in)
 
 DM_END
