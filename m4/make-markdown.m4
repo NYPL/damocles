@@ -77,10 +77,10 @@ m4_define(`DM_INCLUDE', `m4_include($1)m4_dnl')
 
 # --------------------------------------------------------------- #
 m4_define(`DM_BEGIN_COLLAPSIBLE', `<details>
-  <summary>Click here to expand</summary>
+  <summary>Click here to expand</summary><br/>
 ')
 m4_define(`DM_END_COLLAPSIBLE', `
-</details>m4_dnl')
+</details>')
 # --------------------------------------------------------------- #
 
 

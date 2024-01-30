@@ -1,18 +1,3 @@
-# Damocles
-
-_Damocles unifies the previously separated components of the research
-library's data-crunching pipeline_
-
-
-*****
-  - [Sierra Shadow](#sierra-shadow)
-  - [EZproxy](#ezproxy)
-
-*****
-
-## Sierra Shadow
-_under construction_
-
 
 ## EZproxy
 
@@ -148,5 +133,4 @@ The data product contains the following fields
 
 
 </details>
-
-
+  - [EZproxy](#ezproxy)

@@ -28,7 +28,7 @@ DM_CODE(make) in the root directory will produce the proper executable
 you have a C++ toolchain (DM_CODE(build-essential), etc...),
 DM_CODE(libfmt-dev), and DM_CODE(libre2-dev) installed.
 
-DM_SMALL(Fun note: step 1 used to be in lisp but I wanted to see if I can
+DM_SMALL1(Fun note: step 1 used to be in lisp but I wanted to see if I can
 improve the perfomance any by switching to C++. My first attempt was
 10x slower (the c++ standard regex library isn't so fast). After a lot of
 trial and error, I finally got it down to 33% of the time it took the lisp
