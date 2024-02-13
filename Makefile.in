@@ -12,7 +12,8 @@ load bin/dlog-make.so
  endif
 
 
-export NYPL_RAW_DATA_LOC=/home/tony/data
+# export NYPL_RAW_DATA_LOC=/home/tony/data
+export NYPL_RAW_DATA_LOC=${HOME}/data
 
 export NONEXTANTENVVAR=hi
 
