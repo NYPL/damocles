@@ -38,6 +38,11 @@ AC_TYPE_SIZE_T
 AC_C_CONST
 AC_C_INLINE
 
+
+## TODO: check for needed headers.... (e.g. fmt, fcntl.h, etc...
+
+
+
 AC_SUBST(CC)
 AC_SUBST(CXX)
 

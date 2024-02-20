@@ -17,12 +17,6 @@ load bin/dlog-make.so
 
 ##### ENVIRONMENT VARIABLES #####
 
-# export NYPL_RAW_DATA_LOC=${HOME}/data
-export EZPROXY_LOGS=${HOME}/data/ezproxy-logs
-export EZPROXY_IP=
-export EZPROXY_KEY=$$EZPROXY_KEY      # temporary
-export EZPROXY_KEY2=EZPROXY_KEY      # temporary
-
 NYPL_RAW_DATA_LOC := @NYPL_RAW_DATA_LOC@
 export NYPL_RAW_DATA_LOC
 
@@ -31,13 +25,21 @@ export EZPROXY_LOGS_LOC
 
 
 CC 			:= @CC@
+CXX 		:= @CXX@
+# TODO: parameterize this?
 LOG_FILE 	:= build.log
 ISO8601D	:= $(shell date -I)
 ISO8601DT	:= $(shell date -Iseconds)
 CY          := $(shell date +%Y)
 
+CXXFLAGS  := -std=c++2b -O2 -I. -Wall -Wextra -Werror -Wpedantic -Wshadow
+CXXFLAGS  += -Wconversion -Wsign-conversion -Wunreachable-code
+CXXFLAGS  += -Weffc++ -Wmissing-braces -Wnon-virtual-dtor -Winline
+CXXFLAGS  += -Wnormalized -Wold-style-cast -Wrange-loop-construct
+CXXFLAGS  += -Wreturn-local-addr -Wredundant-move -Wsuggest-final-types
+CXXFLAGS  += -Wsuggest-override -Wvirtual-inheritance -Wvirtual-move-assign
+CXXFLAGS  += -Wuninitialized -Wswitch-enum -Wswitch
 
-##### TODO: parameterize!
 
 
 
@@ -50,7 +52,7 @@ all: begin bin/dlog-make.so bin/dlog-r.so pleaserunagain
 
  else
 
-all: begin docs debug end
+all: begin docs ezproxy end
 
  endif
 # ----------------------------------------------------------------------- #
@@ -91,9 +93,42 @@ docs: README.md README.pdf ezproxy/README.md
 
 
 
-# ----------------------------------------------------------------------- #
+### EZPROXY ###############################################################
 
-# ----------------------------------------------------------------------- #
+### EZPROXY compilation ####
+
+EZ_EXE := bin/ezproxy/step-1-clean-raw-logs
+EZ_INCDIR := ezproxy/include
+EZ_INCFLAGS := -I$(EZ_INCDIR)
+EZ_CXXFLAGS := $(CXXFLAGS) -DIOSTREAMINPUT
+EZ_LDLIBS := -lfmt
+
+$(EZ_EXE): build/ezproxy/step-1-clean-raw-logs.o build/ezproxy/glob.o
+	$(CXX) -o $@ $^ $(EZ_CXXFLAGS) $(EZ_INCFLAGS) $(EZ_LDLIBS)
+
+build/ezproxy/step-1-clean-raw-logs.o: ezproxy/src/step-1-clean-raw-logs.cpp
+	$(CXX) -c $< $(EZ_CXXFLAGS) $(EZ_INCFLAGS) $(EZ_LDLIBS) -o $@
+
+build/ezproxy/glob.o: ezproxy/src/glob.cpp
+	$(CXX) -c $< -O2 $(EZ_INCFLAGS) -o $@
+
+############################
+
+MOST_RECENT_EZPROXY_LOG := $(EZPROXY_LOGS_LOC)/logs/i.ezproxy.nypl.org.$(ISO8601D).log
+
+.PHONY: ezproxy
+ezproxy: $(EZ_EXE)
+
+# $(EZPROXY_LOGS_LOC)/logs/i.ezproxy.nypl.org.$(ISO8601D).log: ezproxy/step-0-sync-logs.sh
+# 	echo $(MOST_RECENT_EZPROXY_LOG)
+# 	./ezproxy/step-0-sync-logs.sh
+#
+# .PHONY: thisshouldntrun
+# thisshouldntrun:
+# 	echo "BIG F******* ERROR"
+
+###########################################################################
+
 
 
 .PHONY: debug
@@ -111,8 +146,8 @@ debug:
 .PHONY: begin
 begin:
 	@ echo starting
-	@ mkdir -p build
-	@ mkdir -p bin
+	@ mkdir -p build/ezproxy
+	@ mkdir -p bin/ezproxy
 
 .PHONY: pleaserunagain
 pleaserunagain:
