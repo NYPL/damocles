@@ -3,3 +3,5 @@
 echo $NYPL_RAW_DATA_LOC
 
 echo Rscript is here: @Rscript@
+
+echo $VAR_TQ84

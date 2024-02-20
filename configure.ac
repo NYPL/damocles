@@ -1,8 +1,9 @@
 
 
 ### TODO TODO:
-##    - Check for...
-##      - rsync
+##    - Check...
+##      - for rsync
+##      - IP address??
 
 
 #############################################################################
@@ -42,6 +43,18 @@ AC_SUBST(CXX)
 
 # TODO: remove... this is just a test
 AC_SUBST(Rscript)
+
+
+##### setting options #####
+
+TF_CONFIG_ARG_REQ_DIR(NYPL_RAW_DATA_LOC, [The directory to hold the raw data needed for the pipeline])
+AC_SUBST(NYPL_RAW_DATA_LOC)
+
+TF_CONFIG_ARG_OPT_SUBDIR(EZPROXY_LOGS_LOC, [\$\(NYPL_RAW_DATA_LOC\)/ezproxy],
+                      [The directory to hold the EZproxy raw data logs])
+AC_SUBST(EZPROXY_LOGS_LOC)
+
+
 
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_FILES([Makefile])
